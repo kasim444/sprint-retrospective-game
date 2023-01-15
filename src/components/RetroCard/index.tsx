@@ -1,33 +1,28 @@
-import {
-  Avatar,
-  Box,
-  Button,
-  Heading,
-  Text,
-  Tooltip,
-  useTheme,
-} from "@chakra-ui/react";
+import { Avatar, Box, Button, Text, Tooltip, useTheme } from "@chakra-ui/react";
 import { FC } from "react";
 import { IRetroCard } from "src/interfaces/IRetroCard";
 
 const RetroCard: FC<IRetroCard> = ({
-  color = "black",
+  color = "blue",
   question,
   cardOwnerDisplayName,
   isDisabled,
   isActive,
   handlePickCard,
   cardId,
+  isUsed,
 }) => {
   const theme = useTheme();
   return (
     <Box
       backgroundColor="transparent"
       width={"full"}
-      maxWidth="320px"
+      maxWidth="250px"
       position={"relative"}
       transition="transform 0.4s ease-in-out"
-      className={isActive ? "retroCard--isActive" : ""}
+      className={`${isActive ? "retroCard--isActive" : ""} ${
+        isUsed ? "retroCard--isUsed" : ""
+      }`}
       _hover={{
         transform: "scale(1.05)",
         zIndex: 1,
@@ -45,6 +40,9 @@ const RetroCard: FC<IRetroCard> = ({
           "& > div": {
             transform: "rotateY(180deg)",
           },
+        },
+        "&.retroCard--isUsed": {
+          filter: "grayscale(1)",
         },
       }}
     >

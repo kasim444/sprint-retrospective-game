@@ -22,4 +22,8 @@ export interface IRetroCard {
   isActive?: boolean;
   cardOwnerDisplayName?: string;
   uId?: string;
+  isVisible?: boolean;
+  isUsed?: boolean;
 }
+
+export type IRetroCards = { [cardId: string]: IRetroCard }[];

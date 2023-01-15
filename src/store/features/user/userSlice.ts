@@ -1,19 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "src/store";
+import { RootState } from "store/index";
+import { IUser } from "interfaces/IUser";
 
-export interface UserState {
-  displayName: string;
-  uId: string;
-  roomId: string;
-}
-
-export type IUser = {
-  user: UserState | null;
+export type UserState = {
+  user: IUser | null;
   isFetchingUser: boolean;
 };
 
-const initialState: IUser = {
+const initialState: UserState = {
   user: null,
   isFetchingUser: true,
 };
@@ -25,7 +20,7 @@ export const userInfoSlice = createSlice({
     logout: (state) => {
       state.user = null;
     },
-    updateUser(state, action: PayloadAction<UserState>) {
+    updateUser(state, action: PayloadAction<IUser>) {
       state.user = action.payload;
     },
     setIsFetchingUser: (state, action: PayloadAction<boolean>) => {

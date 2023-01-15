@@ -18,14 +18,11 @@ import { ref, set } from "firebase/database";
 import { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { auth, db } from "src/services/firebase";
-import {
-  selectUser,
-  updateUser,
-  UserState,
-} from "src/store/features/user/userSlice";
-import { generateRoomId } from "src/utils/generateRoomId";
-import { INITIAL_ROOM_STATE } from "src/utils/initialRoom";
+import { IUser } from "interfaces/IUser";
+import { auth, db } from "services/firebase";
+import { selectUser, updateUser } from "store/features/user/userSlice";
+import { generateRoomId } from "utils/generateRoomId";
+import { INITIAL_ROOM_STATE } from "utils/initialRoom";
 
 interface ICreateRoomFormModal {
   isOpen: boolean;
@@ -49,11 +46,6 @@ const CreateRoomFormModal: FC<ICreateRoomFormModal> = ({ isOpen, onClose }) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const roomId = generateRoomId();
-    const updatedUser = {
-      ...(user as UserState),
-      displayName,
-      roomId,
-    };
     try {
       // save user
       await set(ref(db, "users/" + user?.uId), {
@@ -61,9 +53,17 @@ const CreateRoomFormModal: FC<ICreateRoomFormModal> = ({ isOpen, onClose }) => {
         roomId,
       });
 
-      // save user to room
+      // save room
       await set(ref(db, "rooms/" + roomId), INITIAL_ROOM_STATE);
+
+      // update user in store
+      const updatedUser = {
+        ...(user as IUser),
+        displayName,
+        roomId,
+      };
       dispatch(updateUser(updatedUser));
+
       toast({
         title: "Room created successfully.",
         status: "success",

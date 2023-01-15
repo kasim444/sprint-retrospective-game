@@ -40,6 +40,7 @@ const CreateRetroQuestionForm = () => {
   const onSubmit: SubmitHandler<IRetroCard> = async ({ cardId, ...rest }) => {
     await set(ref(db, `rooms/${roomId}/cards/${cardId}`), {
       ...rest,
+      isVisible: true,
     });
     reset();
     onToggle();

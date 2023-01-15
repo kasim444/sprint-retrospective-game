@@ -2,12 +2,12 @@ import { onAuthStateChanged } from "firebase/auth";
 import { onValue, ref } from "firebase/database";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { IUser } from "interfaces/IUser";
 import { auth, db } from "src/services/firebase";
 import {
   logout,
   setIsFetchingUser,
   updateUser,
-  UserState,
 } from "src/store/features/user/userSlice";
 
 export const useAuth = () => {
@@ -22,7 +22,7 @@ export const useAuth = () => {
 
       if (user) {
         onValue(ref(db, `/users/` + user.uid), (snapshot) => {
-          const userData: UserState = {
+          const userData: IUser = {
             uId: user.uid,
             displayName: user.displayName || "",
             roomId: "",

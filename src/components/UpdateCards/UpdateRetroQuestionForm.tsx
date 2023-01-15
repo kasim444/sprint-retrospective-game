@@ -35,7 +35,6 @@ const UpdateRetroQuestionForm: FC<IRetroCard> = ({
 
   const {
     register,
-    reset,
     handleSubmit,
     formState: { errors },
   } = useForm<IRetroCard>({

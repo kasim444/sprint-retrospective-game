@@ -9,18 +9,13 @@
 
 - roomId
 - cards ( /cardId )
-- players ( /uId )
-  - uId
-- gameState
-  - isStart
-  - completedPlayers
-  - onlinePlayers
+- retroStatus
+- activeCardId
 
 ## cards ( / cardId )
 
-- cardId
 - question
 - color
-- isActive
 - uId
-- cardOwnerDisplayName
+- isUsed
+- isVisible

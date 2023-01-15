@@ -1,11 +1,5 @@
-import { IGameState } from "src/interfaces/IGameState";
+import { IRetroStatus, IRoom } from "interfaces/IRoom";
 
-export const INITIAL_GAME_STATE: IGameState = {
-  isStart: false,
-  completedPlayers: [],
-};
-
-export const INITIAL_ROOM_STATE = {
-  players: {},
-  gameState: INITIAL_GAME_STATE,
+export const INITIAL_ROOM_STATE: IRoom = {
+  retroStatus: IRetroStatus.PENDING,
 };

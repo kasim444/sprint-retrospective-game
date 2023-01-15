@@ -1,5 +1,4 @@
 import { Alert, AlertDescription, AlertTitle, Image } from "@chakra-ui/react";
-import UpdateCards from "src/components/UpdateCards";
 
 const CardsNotFound = () => {
   return (
@@ -17,9 +16,8 @@ const CardsNotFound = () => {
         Not Found
       </AlertTitle>
       <AlertDescription maxWidth="sm" mb="4">
-        No cards found. Please update your cards.
+        Sorry, we couldn't find any cards for you.
       </AlertDescription>
-      <UpdateCards />
     </Alert>
   );
 };

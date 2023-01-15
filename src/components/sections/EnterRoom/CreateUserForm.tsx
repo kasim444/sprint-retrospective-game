@@ -13,12 +13,9 @@ import { ref, set } from "firebase/database";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { IUser } from "src/interfaces/IUser";
 import { auth, db } from "src/services/firebase";
-import {
-  selectUser,
-  updateUser,
-  UserState,
-} from "src/store/features/user/userSlice";
+import { selectUser, updateUser } from "src/store/features/user/userSlice";
 
 const CreateUserForm = () => {
   const [displayName, setDisplayName] = useState("");
@@ -37,7 +34,7 @@ const CreateUserForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const updatedUser = {
-      ...(user as UserState),
+      ...(user as IUser),
       displayName,
     };
 

@@ -1,6 +1,7 @@
 import { Avatar, Box, Button, Text, Tooltip, useTheme } from "@chakra-ui/react";
+import { motion, Variants } from "framer-motion";
+import { IRetroCard } from "interfaces/IRetroCard";
 import { FC } from "react";
-import { IRetroCard } from "src/interfaces/IRetroCard";
 
 const RetroCard: FC<IRetroCard> = ({
   color = "blue",
@@ -15,31 +16,30 @@ const RetroCard: FC<IRetroCard> = ({
   const theme = useTheme();
   return (
     <Box
+      as={motion.div}
+      initial={false}
+      animate={isActive ? "isActive" : "isInactive"}
+      variants={containerVariants}
       backgroundColor="transparent"
       width={"full"}
-      maxWidth="250px"
+      maxWidth={"200px"}
       position={"relative"}
-      transition="transform 0.4s ease-in-out"
       className={`${isActive ? "retroCard--isActive" : ""} ${
         isUsed ? "retroCard--isUsed" : ""
       }`}
-      _hover={{
-        transform: "scale(1.05)",
-        zIndex: 1,
-      }}
+      whileHover={
+        !isActive
+          ? {
+              scale: 1.05,
+              zIndex: 1,
+            }
+          : undefined
+      }
       sx={{
         perspective: "1000px",
         aspectRatio: "3/4",
         "&.retroCard--isActive": {
-          zIndex: 1,
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%) scale(1.15)",
-
-          "& > div": {
-            transform: "rotateY(180deg)",
-          },
+          maxWidth: "250px",
         },
         "&.retroCard--isUsed": {
           filter: "grayscale(1)",
@@ -47,6 +47,7 @@ const RetroCard: FC<IRetroCard> = ({
       }}
     >
       <Box
+        as={motion.div}
         position="relative"
         width="full"
         height="full"
@@ -55,6 +56,9 @@ const RetroCard: FC<IRetroCard> = ({
         sx={{
           transformStyle: "preserve-3d",
         }}
+        initial={false}
+        animate={isActive ? "isActive" : "isInactive"}
+        variants={childVariants}
       >
         <Box
           position="absolute"
@@ -95,7 +99,7 @@ const RetroCard: FC<IRetroCard> = ({
             background: "rgba(0,0,0,.1)",
           }}
         >
-          <Box zIndex={3}>
+          <Box {...(isActive ? { pointerEvents: "none" } : { zIndex: 3 })}>
             {cardOwnerDisplayName ? (
               <Tooltip hasArrow label={cardOwnerDisplayName}>
                 <Avatar
@@ -158,6 +162,13 @@ const RetroCard: FC<IRetroCard> = ({
                 bottom="6"
                 left="50%"
                 transform="translateX(-50%)"
+                cursor={"pointer"}
+                {...(isActive && { zIndex: 3 })}
+                sx={{
+                  "& > div": {
+                    width: "full",
+                  },
+                }}
               />
             </Tooltip>
           )}
@@ -169,3 +180,38 @@ const RetroCard: FC<IRetroCard> = ({
 };
 
 export default RetroCard;
+
+const activeTransition = {
+  duration: 0.4,
+  ease: "easeOut",
+};
+
+const inactiveTransition = {
+  duration: 0.2,
+  easings: "easeOut",
+};
+
+const containerVariants: Variants = {
+  isActive: {
+    zIndex: 2,
+    position: "absolute",
+    top: "-30vh",
+    left: "50%",
+    x: "-50%",
+    scale: 1.05,
+    transition: activeTransition,
+  },
+  isInactive: {
+    transition: inactiveTransition,
+  },
+};
+
+const childVariants: Variants = {
+  isActive: {
+    rotateY: 180,
+    transition: activeTransition,
+  },
+  isInactive: {
+    transition: inactiveTransition,
+  },
+};

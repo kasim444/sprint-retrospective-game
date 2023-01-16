@@ -16,8 +16,8 @@ import RoomStatusBadge from "components/RoomStatusBadge";
 import Spinner from "components/Spinner";
 import UpdateCards from "components/UpdateCards";
 import { ref, runTransaction } from "firebase/database";
+import { motion, Variants } from "framer-motion";
 import CircleIcon from "icons/CircleIcon";
-import { useRef } from "react";
 import Confetti from "react-confetti";
 import { useObject } from "react-firebase-hooks/database";
 import { useSelector } from "react-redux";
@@ -31,8 +31,6 @@ import { RootState } from "store/index";
 export const REQUIRED_NUMBER_OF_PLAYERS = 2;
 
 const Room = () => {
-  const cardContainerRef = useRef<HTMLDivElement>(null);
-
   const { roomId } = useParams();
   const toast = useToast();
 
@@ -50,7 +48,7 @@ const Room = () => {
 
   if (!roomDetail?.val()) {
     return (
-      <Container maxWidth={"container.lg"} mt="1vw">
+      <Container maxWidth={"container.lg"} mt="1vh">
         <Alert
           status="error"
           variant="subtle"
@@ -263,7 +261,7 @@ const Room = () => {
   return (
     <>
       <Container maxWidth={"container.lg"}>
-        <Flex justifyContent={"center"} gap="4" mb="1vw">
+        <Flex justifyContent={"center"} gap="4" mb="1vh">
           {isAdmin &&
             roomDetail?.val().retroStatus === IRetroStatus.PENDING && (
               <UpdateCards />
@@ -288,7 +286,7 @@ const Room = () => {
             </Button>
           )}
         </Flex>
-        <Flex justifyContent={"space-between"} mb="3vw">
+        <Flex justifyContent={"space-between"} mb="3vh">
           <Box>
             {roomDetail?.val().retroStatus && (
               <Flex alignItems={"flex-end"}>
@@ -311,7 +309,10 @@ const Room = () => {
           </Box>
         </Flex>
         <Flex
-          ref={cardContainerRef}
+          as={motion.div}
+          initial={false}
+          animate={roomDetail?.val().activeCardId ? "isActive" : "isInactive"}
+          variants={containerVariants}
           position={"relative"}
           flexWrap="wrap"
           justifyContent={"center"}
@@ -347,3 +348,14 @@ const Room = () => {
 };
 
 export default Room;
+
+const containerVariants: Variants = {
+  isActive: {
+    y: "35vh",
+    transition: { ease: "easeOut" },
+  },
+  isInactive: {
+    y: "0",
+    transition: { ease: "easeIn" },
+  },
+};

@@ -15,6 +15,7 @@ const theme = extendTheme({
       },
       body: {
         minHeight: "full",
+        overflowX: "hidden",
       },
     },
   },

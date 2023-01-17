@@ -1,11 +1,24 @@
-import { Avatar, Container, Flex, Tooltip } from "@chakra-ui/react";
-import { Link } from "react-router-dom";
-import { Link as ChakraLink, Text } from "@chakra-ui/react";
+import {
+  Avatar,
+  Button,
+  Center,
+  Container,
+  Flex,
+  Link as ChakraLink,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuItem,
+  MenuList,
+  Text,
+} from "@chakra-ui/react";
 import { useSelector } from "react-redux";
-import { selectUser } from "src/store/features/user/userSlice";
+import { Link } from "react-router-dom";
+import { selectUser } from "store/features/user/userSlice";
 
 const Header = () => {
   const user = useSelector(selectUser);
+
   return (
     <header>
       <Container maxWidth={"container.lg"}>
@@ -30,16 +43,45 @@ const Header = () => {
               Retro
             </Text>
           </ChakraLink>
-          {user?.displayName && (
-            <Tooltip hasArrow label={user?.displayName}>
-              <Avatar
-                name={user?.displayName}
-                size="sm"
-                userSelect={"none"}
-                bg="green.400"
-              />
-            </Tooltip>
-          )}
+          <Flex alignItems={"center"} gap="4">
+            {user?.displayName && (
+              <>
+                <Menu>
+                  <MenuButton
+                    as={Button}
+                    rounded={"full"}
+                    variant={"link"}
+                    cursor={"pointer"}
+                    minW={0}
+                  >
+                    <Avatar
+                      name={user?.displayName}
+                      size="sm"
+                      userSelect={"none"}
+                      bg="green.400"
+                    />
+                  </MenuButton>
+                  <MenuList alignItems={"center"}>
+                    <Center>
+                      <Avatar
+                        name={user?.displayName}
+                        size="md"
+                        userSelect={"none"}
+                        bg="green.400"
+                      />
+                    </Center>
+                    <Center>
+                      <p>{user?.displayName}</p>
+                    </Center>
+                    <MenuDivider mt="3" />
+                    <MenuItem as={Link} to={`/profile`}>
+                      My Account
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
+              </>
+            )}
+          </Flex>
         </Flex>
       </Container>
     </header>

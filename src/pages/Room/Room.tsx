@@ -223,6 +223,7 @@ const Room = () => {
         Object.keys(cards).forEach((cardId) => {
           cards[cardId].isVisible = true;
           cards[cardId].isUsed = false;
+          cards[cardId].uId = null;
         });
       }
       return cards;

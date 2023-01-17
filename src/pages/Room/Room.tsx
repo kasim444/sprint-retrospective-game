@@ -13,20 +13,22 @@ import {
 } from "@chakra-ui/react";
 import RetroCard from "components/RetroCard";
 import RoomStatusBadge from "components/RoomStatusBadge";
+import CardsNotFound from "components/sections/CardsNotFound";
 import Spinner from "components/Spinner";
 import UpdateCards from "components/UpdateCards";
 import { ref, runTransaction } from "firebase/database";
 import { motion, Variants } from "framer-motion";
 import CircleIcon from "icons/CircleIcon";
+import { IRetroStatus } from "interfaces/IRoom";
+import { useEffect } from "react";
 import Confetti from "react-confetti";
 import { useObject } from "react-firebase-hooks/database";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { db } from "services/firebase";
-import CardsNotFound from "src/components/sections/CardsNotFound";
-import { IRetroStatus } from "src/interfaces/IRoom";
-import { isOwnRoom, selectUser } from "src/store/features/user/userSlice";
+import { isOwnRoom, selectUser } from "store/features/user/userSlice";
 import { RootState } from "store/index";
+import { scrollToTop } from "utils/scrollToTop";
 
 export const REQUIRED_NUMBER_OF_PLAYERS = 2;
 
@@ -41,6 +43,12 @@ const Room = () => {
 
   const [roomDetail, roomDetailLoading] = useObject(ref(db, `rooms/${roomId}`));
   const [users, usersLoading] = useObject(ref(db, "users"));
+
+  useEffect(() => {
+    if (roomDetail?.val()?.activeCardId) {
+      scrollToTop();
+    }
+  }, [roomDetail?.val()?.activeCardId]);
 
   if (roomDetailLoading || usersLoading) {
     return <Spinner isOpen={true} />;

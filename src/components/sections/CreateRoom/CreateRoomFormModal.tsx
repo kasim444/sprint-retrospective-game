@@ -15,10 +15,10 @@ import {
 } from "@chakra-ui/react";
 import { signInAnonymously } from "firebase/auth";
 import { ref, set } from "firebase/database";
+import { IUser } from "interfaces/IUser";
 import { FC, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { IUser } from "interfaces/IUser";
 import { auth, db } from "services/firebase";
 import { selectUser, updateUser } from "store/features/user/userSlice";
 import { generateRoomId } from "utils/generateRoomId";
@@ -99,6 +99,7 @@ const CreateRoomFormModal: FC<ICreateRoomFormModal> = ({ isOpen, onClose }) => {
                 id="displayName"
                 placeholder="Your Display Name *"
                 required
+                minLength={3}
                 value={displayName}
                 onChange={(e) => setDisplayName(e.target.value)}
               />

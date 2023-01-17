@@ -1,6 +1,7 @@
 import Layout from "components/layout";
 import LandingPage from "pages/LandingPage/LandingPage";
 import PageNotFound from "pages/PageNotFound/PageNotFound";
+import Profile from "pages/Profile";
 import Room from "pages/Room/Room";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import PrivateRoute from "./PrivateRoute";
@@ -14,6 +15,8 @@ const AppRoutes = () => {
 
           {/* protected routes */}
           <Route path="/" element={<PrivateRoute />}>
+            <Route path="/profile" element={<Profile />} />
+
             <Route path="/room/:roomId" element={<Room />} />
           </Route>
 

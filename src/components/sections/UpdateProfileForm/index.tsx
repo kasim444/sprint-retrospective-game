@@ -17,7 +17,7 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import ProfileShell from "components/ProfileShell";
-import { ref, set } from "firebase/database";
+import { ref, runTransaction } from "firebase/database";
 import { IUser } from "interfaces/IUser";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
@@ -48,9 +48,16 @@ const UpdateProfileForm = () => {
   ) => {
     e?.preventDefault();
     try {
-      await set(ref(db, "users/" + user?.uId), {
-        displayName,
+      const userRef = ref(db, "users/" + user?.uId);
+
+      await runTransaction(userRef, (userData) => {
+        if (userData) {
+          userData.displayName = displayName;
+        }
+
+        return userData;
       });
+
       toast({
         title: "Profile updated successfully.",
         status: "success",

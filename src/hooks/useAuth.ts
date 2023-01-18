@@ -1,14 +1,14 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { onValue, ref } from "firebase/database";
+import { IUser } from "interfaces/IUser";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { IUser } from "interfaces/IUser";
-import { auth, db } from "src/services/firebase";
+import { auth, db } from "services/firebase";
 import {
   logout,
   setIsFetchingUser,
   updateUser,
-} from "src/store/features/user/userSlice";
+} from "store/features/user/userSlice";
 
 export const useAuth = () => {
   const dispatch = useDispatch();

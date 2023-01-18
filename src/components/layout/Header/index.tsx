@@ -11,13 +11,32 @@ import {
   MenuItem,
   MenuList,
   Text,
+  useToast,
 } from "@chakra-ui/react";
+import { signOut } from "firebase/auth";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { auth } from "services/firebase";
 import { selectUser } from "store/features/user/userSlice";
 
 const Header = () => {
+  const toast = useToast();
+  const navigate = useNavigate();
+
   const user = useSelector(selectUser);
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigate("/");
+    } catch (error) {
+      toast({
+        title: `Something went wrong.`,
+        status: "error",
+        isClosable: true,
+      });
+    }
+  };
 
   return (
     <header>
@@ -77,6 +96,7 @@ const Header = () => {
                     <MenuItem as={Link} to={`/profile`}>
                       My Account
                     </MenuItem>
+                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
                   </MenuList>
                 </Menu>
               </>

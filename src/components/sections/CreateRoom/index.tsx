@@ -17,7 +17,7 @@ const CreateRoom = () => {
           CREATE INSTANT ROOM
         </Button>
       </Flex>
-      <CreateRoomFormModal isOpen={isOpen} onClose={onClose} />
+      {isOpen && <CreateRoomFormModal isOpen={isOpen} onClose={onClose} />}
     </>
   );
 };

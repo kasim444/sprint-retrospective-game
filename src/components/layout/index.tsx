@@ -17,7 +17,7 @@ const Layout = () => {
       <aside>
         <Adsense
           client={import.meta.env.VITE_APP_ADSENSE_CLIENT_ID}
-          slot="7259870550"
+          slot={import.meta.env.VITE_APP_ADSENSE_SLOT1_ID}
           style={{ display: "block" }}
           layout="in-article"
           format="fluid"
@@ -27,7 +27,7 @@ const Layout = () => {
         <Outlet />
         <Adsense
           client={import.meta.env.VITE_APP_ADSENSE_CLIENT_ID}
-          slot="7259870550"
+          slot={import.meta.env.VITE_APP_ADSENSE_SLOT2_ID}
           style={{ display: "block" }}
           layout="in-article"
           format="fluid"
@@ -36,7 +36,7 @@ const Layout = () => {
       <aside>
         <Adsense
           client={import.meta.env.VITE_APP_ADSENSE_CLIENT_ID}
-          slot="7259870550"
+          slot={import.meta.env.VITE_APP_ADSENSE_SLOT3_ID}
           style={{ display: "block" }}
           layout="in-article"
           format="fluid"

@@ -12,6 +12,7 @@
   "dependencies": {
     "@chakra-ui/icons": "^2.0.11",
     "@chakra-ui/react": "^2.3.4",
+    "@ctrl/react-adsense": "^1.6.1",
     "@emotion/react": "^11.10.4",
     "@emotion/styled": "^11.10.4",
     "@fontsource/oswald": "^4.5.11",

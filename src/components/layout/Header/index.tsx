@@ -65,7 +65,7 @@ const Header = () => {
           <Flex alignItems={"center"} gap="4">
             {user?.displayName && (
               <>
-                <Menu>
+                <Menu placement="bottom">
                   <MenuButton
                     as={Button}
                     rounded={"full"}

@@ -42,7 +42,9 @@ const UpdateCards = () => {
   return (
     <>
       <Flex justifyContent={"center"}>
-        <Button onClick={onOpen}>Cards</Button>
+        <Button rounded={"full"} onClick={onOpen}>
+          Cards
+        </Button>
       </Flex>
 
       <Modal isOpen={isOpen} onClose={onClose} size="3xl">

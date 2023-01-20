@@ -108,10 +108,10 @@ const CreateRoomFormModal: FC<ICreateRoomFormModal> = ({ isOpen, onClose }) => {
         </ModalBody>
 
         <ModalFooter>
-          <Button colorScheme="blue" mr={3} type="submit">
+          <Button colorScheme="green" rounded={"full"} mr={3} type="submit">
             CREATE ROOM
           </Button>
-          <Button variant="ghost" onClick={onClose}>
+          <Button variant="ghost" rounded={"full"} onClick={onClose}>
             CANCEL
           </Button>
         </ModalFooter>

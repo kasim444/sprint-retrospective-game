@@ -14,34 +14,9 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <aside>
-        <Adsense
-          client={import.meta.env.VITE_APP_ADSENSE_CLIENT_ID}
-          slot={import.meta.env.VITE_APP_ADSENSE_SLOT1_ID}
-          style={{ display: "block" }}
-          layout="in-article"
-          format="fluid"
-        />
-      </aside>
       <main>
         <Outlet />
-        <Adsense
-          client={import.meta.env.VITE_APP_ADSENSE_CLIENT_ID}
-          slot={import.meta.env.VITE_APP_ADSENSE_SLOT2_ID}
-          style={{ display: "block" }}
-          layout="in-article"
-          format="fluid"
-        />
       </main>
-      <aside>
-        <Adsense
-          client={import.meta.env.VITE_APP_ADSENSE_CLIENT_ID}
-          slot={import.meta.env.VITE_APP_ADSENSE_SLOT3_ID}
-          style={{ display: "block" }}
-          layout="in-article"
-          format="fluid"
-        />
-      </aside>
       <Spinner isOpen={isFetchingUser} />
     </>
   );

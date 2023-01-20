@@ -4,7 +4,7 @@ import HowItWorks from "components/sections/HowItWorks";
 
 const LandingPage = () => {
   return (
-    <Container maxWidth={"container.xl"}>
+    <Container maxWidth={"container.lg"}>
       <Hero />
       <HowItWorks />
     </Container>

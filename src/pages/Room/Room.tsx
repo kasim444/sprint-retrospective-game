@@ -79,8 +79,7 @@ const Room = () => {
   }
 
   const checkValidMinNumberOfPickedCards = () =>
-    !roomDetail?.val()?.cards ||
-    Object.keys(roomDetail?.val().cards).filter(
+    Object.keys(roomDetail?.val()?.cards || []).filter(
       (cardId) => roomDetail?.val().cards[cardId].uId
     ).length >= REQUIRED_NUMBER_OF_PLAYERS;
 
@@ -278,19 +277,31 @@ const Room = () => {
 
           {isAdmin &&
             roomDetail?.val().retroStatus === IRetroStatus.PENDING && (
-              <Button colorScheme={"green"} onClick={handleStartRetro}>
+              <Button
+                colorScheme={"green"}
+                rounded={"full"}
+                onClick={handleStartRetro}
+              >
                 Start
               </Button>
             )}
 
           {isAdmin && roomDetail?.val().retroStatus === IRetroStatus.ACTIVE && (
-            <Button colorScheme={"green"} onClick={handleNextRandomMember}>
+            <Button
+              colorScheme={"green"}
+              rounded={"full"}
+              onClick={handleNextRandomMember}
+            >
               Next Member
             </Button>
           )}
 
           {isAdmin && (
-            <Button colorScheme={"red"} onClick={handleResetRetro}>
+            <Button
+              colorScheme={"red"}
+              rounded={"full"}
+              onClick={handleResetRetro}
+            >
               Reset
             </Button>
           )}
@@ -298,7 +309,7 @@ const Room = () => {
         <Flex justifyContent={"space-between"} mb="3vh">
           <Box>
             {roomDetail?.val().retroStatus && (
-              <Flex alignItems={"flex-end"}>
+              <Flex alignItems={"center"}>
                 <Heading fontSize={"lg"} mr="1">
                   <b>STATUS: </b>
                 </Heading>

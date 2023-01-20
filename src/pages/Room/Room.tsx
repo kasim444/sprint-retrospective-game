@@ -27,6 +27,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { db } from "services/firebase";
 import AdsenseShell from "src/components/AdsenseShell";
+import { useDocumentDimensions } from "src/hooks/useDocumentDimensions";
 import { isOwnRoom, selectUser } from "store/features/user/userSlice";
 import { RootState } from "store/index";
 import { scrollToTop } from "utils/scrollToTop";
@@ -36,6 +37,7 @@ export const REQUIRED_NUMBER_OF_PLAYERS = 2;
 const Room = () => {
   const { roomId } = useParams();
   const toast = useToast();
+  const { width, height } = useDocumentDimensions();
 
   const user = useSelector(selectUser);
   const isAdmin = useSelector((state: RootState) =>
@@ -365,7 +367,9 @@ const Room = () => {
           )}
         </Flex>
       </Container>
-      {roomDetail?.val().retroStatus === IRetroStatus.FINISHED && <Confetti />}
+      {roomDetail?.val().retroStatus === IRetroStatus.FINISHED && (
+        <Confetti width={width} height={height} />
+      )}
     </AdsenseShell>
   );
 };

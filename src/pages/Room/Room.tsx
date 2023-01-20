@@ -26,6 +26,7 @@ import { useObject } from "react-firebase-hooks/database";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { db } from "services/firebase";
+import AdsenseShell from "src/components/AdsenseShell";
 import { isOwnRoom, selectUser } from "store/features/user/userSlice";
 import { RootState } from "store/index";
 import { scrollToTop } from "utils/scrollToTop";
@@ -56,25 +57,27 @@ const Room = () => {
 
   if (!roomDetail?.val()) {
     return (
-      <Container maxWidth={"container.lg"} mt="1vh">
-        <Alert
-          status="error"
-          variant="subtle"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-          textAlign="center"
-          height="200px"
-        >
-          <AlertIcon boxSize="40px" mr={0} />
-          <AlertTitle mt={4} mb={1} fontSize="lg">
-            Error
-          </AlertTitle>
-          <AlertDescription maxWidth="sm">
-            Room not found. Please check the room id.
-          </AlertDescription>
-        </Alert>
-      </Container>
+      <AdsenseShell>
+        <Container maxWidth={"container.lg"} mt="1vh">
+          <Alert
+            status="error"
+            variant="subtle"
+            flexDirection="column"
+            alignItems="center"
+            justifyContent="center"
+            textAlign="center"
+            height="200px"
+          >
+            <AlertIcon boxSize="40px" mr={0} />
+            <AlertTitle mt={4} mb={1} fontSize="lg">
+              Error
+            </AlertTitle>
+            <AlertDescription maxWidth="sm">
+              Room not found. Please check the room id.
+            </AlertDescription>
+          </Alert>
+        </Container>
+      </AdsenseShell>
     );
   }
 
@@ -267,7 +270,7 @@ const Room = () => {
   };
 
   return (
-    <>
+    <AdsenseShell>
       <Container maxWidth={"container.lg"}>
         <Flex justifyContent={"center"} gap="4" mb="1vh">
           {isAdmin &&
@@ -363,7 +366,7 @@ const Room = () => {
         </Flex>
       </Container>
       {roomDetail?.val().retroStatus === IRetroStatus.FINISHED && <Confetti />}
-    </>
+    </AdsenseShell>
   );
 };
 

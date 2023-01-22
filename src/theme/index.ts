@@ -17,6 +17,15 @@ const theme = extendTheme({
         minHeight: "full",
         overflowX: "hidden",
       },
+      "#root": {
+        display: "flex",
+        flexDirection: "column",
+        minHeight: "full",
+        height: "100% !important",
+      },
+      "#root > main": {
+        flexGrow: 1,
+      },
     },
   },
 });

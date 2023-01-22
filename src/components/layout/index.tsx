@@ -17,6 +17,10 @@ const Layout = () => {
       <main>
         <Outlet />
       </main>
+      <Adsense
+        client={import.meta.env.VITE_APP_ADSENSE_CLIENT_ID}
+        slot={import.meta.env.VITE_APP_ADSENSE_SLOT_FOOTER_ID}
+      />
       <Spinner isOpen={isFetchingUser} />
     </>
   );

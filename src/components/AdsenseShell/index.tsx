@@ -12,20 +12,14 @@ const AdsenseShell: FC<IAdsenseShell> = ({ children }) => {
       <Aside>
         <Adsense
           client={import.meta.env.VITE_APP_ADSENSE_CLIENT_ID}
-          slot={import.meta.env.VITE_APP_ADSENSE_SLOT1_ID}
-          style={{ display: "block" }}
-          layout="in-article"
-          format="fluid"
+          slot={import.meta.env.VITE_APP_ADSENSE_SLOT_ASIDE1_ID}
         />
       </Aside>
       <Section>{children}</Section>
       <Aside>
         <Adsense
           client={import.meta.env.VITE_APP_ADSENSE_CLIENT_ID}
-          slot={import.meta.env.VITE_APP_ADSENSE_SLOT2_ID}
-          style={{ display: "block" }}
-          layout="in-article"
-          format="fluid"
+          slot={import.meta.env.VITE_APP_ADSENSE_SLOT_ASIDE2_ID}
         />
       </Aside>
     </Wrapper>

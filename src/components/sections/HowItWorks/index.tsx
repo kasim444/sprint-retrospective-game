@@ -366,7 +366,7 @@ const HowItWorks = () => {
           </Heading>
           <Text color={"gray.500"}>
             End the session after team members have answered the questions on
-            the cards. See you at the next retro meeting 🖖
+            the cards. See you at the next retro meeting.
           </Text>
         </Stack>
         <Flex

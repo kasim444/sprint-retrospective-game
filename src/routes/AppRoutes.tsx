@@ -4,6 +4,7 @@ import PageNotFound from "pages/PageNotFound/PageNotFound";
 import Profile from "pages/Profile";
 import Room from "pages/Room/Room";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AboutPage from "src/pages/AboutPage/AboutPage";
 import PrivateRoute from "./PrivateRoute";
 
 const AppRoutes = () => {
@@ -19,6 +20,8 @@ const AppRoutes = () => {
 
             <Route path="/room/:roomId" element={<Room />} />
           </Route>
+
+          <Route path="/about" element={<AboutPage />} />
 
           <Route path="*" element={<PageNotFound />} />
         </Route>

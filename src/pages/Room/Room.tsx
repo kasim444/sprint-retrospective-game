@@ -5,22 +5,21 @@ import {
   AlertTitle,
   Box,
   Button,
-  Center,
   Container,
   Flex,
   Heading,
-  Stack,
-  Text,
   useToast,
 } from "@chakra-ui/react";
+import AdsenseShell from "components/AdsenseShell";
 import RetroCard from "components/RetroCard";
+import RoomSettings from "components/RoomSettings";
 import RoomStatusBadge from "components/RoomStatusBadge";
 import CardsNotFound from "components/sections/CardsNotFound";
 import Spinner from "components/Spinner";
 import UpdateCards from "components/UpdateCards";
 import { ref, runTransaction } from "firebase/database";
 import { motion, Variants } from "framer-motion";
-import CircleIcon from "icons/CircleIcon";
+import { useDocumentDimensions } from "hooks/useDocumentDimensions";
 import { IRetroStatus } from "interfaces/IRoom";
 import { useEffect } from "react";
 import Confetti from "react-confetti";
@@ -28,12 +27,10 @@ import { useObject } from "react-firebase-hooks/database";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { db } from "services/firebase";
-import AdsenseShell from "components/AdsenseShell";
-import RoomSettings from "components/RoomSettings";
-import { useDocumentDimensions } from "hooks/useDocumentDimensions";
-import { REQUIRED_NUMBER_OF_PLAYERS } from "utils/initialRoom";
+import PlayerStatus from "src/components/PlayerStatus";
 import { isOwnRoom, selectUser } from "store/features/user/userSlice";
 import { RootState } from "store/index";
+import { REQUIRED_NUMBER_OF_PLAYERS } from "utils/initialRoom";
 import { scrollToTop } from "utils/scrollToTop";
 
 const Room = () => {
@@ -88,8 +85,8 @@ const Room = () => {
   const checkValidMinNumberOfPickedCards = () =>
     Object.keys(roomDetail?.val()?.cards || []).filter(
       (cardId) => roomDetail?.val().cards[cardId].uId
-    ).length >= roomDetail?.val().requiredNumberOfPlayers ||
-    REQUIRED_NUMBER_OF_PLAYERS;
+    ).length >=
+    (roomDetail?.val().requiredNumberOfPlayers || REQUIRED_NUMBER_OF_PLAYERS);
 
   // update isVisible value of unowned cards
   const updateUnownedCards = async () => {
@@ -221,6 +218,12 @@ const Room = () => {
     return visibleCards;
   };
 
+  const getSelectionOfCards = () => {
+    const visibleCards = getVisibleCards();
+
+    return visibleCards.filter((cardId) => roomDetail?.val().cards[cardId].uId);
+  };
+
   const getCardOwnerDisplayName = (cardId: string) => {
     const cardOwnerId = roomDetail?.val().cards[cardId].uId;
     return users?.val()[cardOwnerId]?.displayName;
@@ -290,83 +293,83 @@ const Room = () => {
             {roomDetail.val()?.roomName}
           </Heading>
         )}
-        <Stack
-          direction={{ base: "column", lg: "row" }}
-          justifyContent={{ base: "center", lg: "space-between" }}
-          mb="4vh"
-        >
-          <Flex justifyContent={"space-between"}>
-            <Box>
-              {roomDetail?.val().retroStatus && (
-                <Flex alignItems={"center"}>
-                  <Heading fontSize={"lg"} mr="1">
-                    <b>STATUS: </b>
-                  </Heading>
-                  <RoomStatusBadge status={roomDetail?.val().retroStatus} />
-                </Flex>
-              )}
-            </Box>
-            <Box>
-              {roomDetail
-                ?.val()
-                .gameState?.onlinePlayers?.map((onlinePlayer: string) => (
-                  <Flex gap="1" alignItems={"center"}>
-                    <CircleIcon color="green.500" mt="2px" />
-                    <Text key={onlinePlayer}>{onlinePlayer}</Text>
-                  </Flex>
-                ))}
-            </Box>
-          </Flex>
-          <Flex justifyContent={"center"} gap="4">
-            {isAdmin &&
-              roomDetail?.val().retroStatus === IRetroStatus.PENDING && (
-                <UpdateCards />
-              )}
 
-            {isAdmin &&
-              roomDetail?.val().retroStatus === IRetroStatus.PENDING && (
-                <Button
-                  colorScheme={"green"}
-                  rounded={"full"}
-                  onClick={handleStartRetro}
-                >
-                  Start
-                </Button>
-              )}
+        <Flex justifyContent={"center"} gap="4" mb={{ base: "4vh", lg: "0" }}>
+          {isAdmin &&
+            roomDetail?.val().retroStatus === IRetroStatus.PENDING && (
+              <UpdateCards />
+            )}
 
-            {isAdmin &&
-              roomDetail?.val().retroStatus === IRetroStatus.ACTIVE && (
-                <Button
-                  colorScheme={"green"}
-                  rounded={"full"}
-                  onClick={handleNextRandomMember}
-                >
-                  Next Member
-                </Button>
-              )}
-
-            {isAdmin && (
+          {isAdmin &&
+            roomDetail?.val().retroStatus === IRetroStatus.PENDING && (
               <Button
-                colorScheme={"red"}
+                colorScheme={"green"}
                 rounded={"full"}
-                onClick={handleResetRetro}
+                onClick={handleStartRetro}
               >
-                Reset
+                Start
               </Button>
             )}
-            {isAdmin &&
-              roomDetail?.val().retroStatus === IRetroStatus.PENDING && (
-                <RoomSettings
-                  roomId={roomId as string}
-                  roomName={roomDetail.val()?.roomName}
-                  requiredNumberOfPlayers={
-                    roomDetail.val()?.requiredNumberOfPlayers
-                  }
-                />
-              )}
-          </Flex>
-        </Stack>
 
+          {isAdmin && roomDetail?.val().retroStatus === IRetroStatus.ACTIVE && (
+            <Button
+              colorScheme={"green"}
+              rounded={"full"}
+              onClick={handleNextRandomMember}
+            >
+              Next Member
+            </Button>
+          )}
+
+          {isAdmin && (
+            <Button
+              colorScheme={"red"}
+              rounded={"full"}
+              onClick={handleResetRetro}
+            >
+              Reset
+            </Button>
+          )}
+          {isAdmin &&
+            roomDetail?.val().retroStatus === IRetroStatus.PENDING && (
+              <RoomSettings
+                roomId={roomId as string}
+                roomName={roomDetail.val()?.roomName}
+                requiredNumberOfPlayers={
+                  roomDetail.val()?.requiredNumberOfPlayers
+                }
+              />
+            )}
+        </Flex>
+
+        <Flex
+          flexDirection={{ base: "row", lg: "row" }}
+          justifyContent={"space-between"}
+          gap="4"
+          mb="2vh"
+        >
+          <Box>
+            {roomDetail?.val().retroStatus && (
+              <Flex alignItems={"center"}>
+                <Heading fontSize={"lg"} mr="1">
+                  <b>STATUS: </b>
+                </Heading>
+                <RoomStatusBadge status={roomDetail?.val().retroStatus} />
+              </Flex>
+            )}
+          </Box>
+          <Box>
+            {getSelectionOfCards().length > 0 &&
+              getSelectionOfCards().map((cardId) => (
+                <PlayerStatus
+                  key={cardId}
+                  cardOwnerDisplayName={getCardOwnerDisplayName(cardId)}
+                  isActive={cardId === roomDetail?.val().activeCardId}
+                  isUsed={roomDetail?.val().cards[cardId].isUsed}
+                />
+              ))}
+          </Box>
+        </Flex>
         <Flex
           as={motion.div}
           initial={false}
@@ -376,6 +379,7 @@ const Room = () => {
           flexWrap="wrap"
           justifyContent={"space-around"}
           gap="4"
+          pb={roomDetail?.val().activeCardId ? "35vh" : "0"}
         >
           {!roomDetail?.val().cards ? (
             <CardsNotFound />

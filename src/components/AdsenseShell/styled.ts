@@ -1,6 +1,9 @@
 import styled from "@emotion/styled";
 
 export const Aside = styled.aside`
+  display: flex;
+  justify-content: center;
+
   &:first-of-type {
     grid-area: first-aside;
   }
@@ -8,6 +11,7 @@ export const Aside = styled.aside`
     grid-area: last-aside;
   }
 `;
+
 export const Section = styled.section`
   grid-area: section;
 `;

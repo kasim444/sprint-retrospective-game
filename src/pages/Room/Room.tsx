@@ -211,7 +211,7 @@ const Room = () => {
   };
 
   const getVisibleCards = () => {
-    const visibleCards = Object.keys(roomDetail?.val().cards).filter(
+    const visibleCards = Object.keys(roomDetail?.val().cards || []).filter(
       (cardId) => roomDetail?.val().cards[cardId].isVisible
     );
 

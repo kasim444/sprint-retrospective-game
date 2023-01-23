@@ -2,6 +2,7 @@ import { Center } from "@chakra-ui/react";
 import { Adsense } from "@ctrl/react-adsense";
 import Spinner from "components/Spinner";
 import { useAuth } from "hooks/useAuth";
+import { usePageViews } from "hooks/usePageViews";
 import useScrollToTop from "hooks/useScrollToTop";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
@@ -14,6 +15,7 @@ const Layout = () => {
 
   useAuth();
   useScrollToTop();
+  usePageViews();
 
   return (
     <>

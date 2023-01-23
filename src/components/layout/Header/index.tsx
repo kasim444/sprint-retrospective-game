@@ -73,7 +73,7 @@ const Header = () => {
             </HStack>
             <Flex alignItems={"center"} gap={{ base: "1", lg: "4" }}>
               {roomId && <ShareRoomLink roomId={roomId} />}
-              <Button rounded={"full"} onClick={toggleColorMode}>
+              <Button rounded={"full"} onClick={toggleColorMode} px="0">
                 {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
               </Button>
               {user?.displayName && (
@@ -84,13 +84,16 @@ const Header = () => {
                       rounded={"full"}
                       variant={"link"}
                       cursor={"pointer"}
-                      minW={0}
+                      minW={"10"}
+                      height={"10"}
                     >
                       <Avatar
                         name={user?.displayName}
                         size="sm"
                         userSelect={"none"}
                         bg="green.400"
+                        height={"10"}
+                        minW={"10"}
                       />
                     </MenuButton>
                     <MenuList alignItems={"center"}>

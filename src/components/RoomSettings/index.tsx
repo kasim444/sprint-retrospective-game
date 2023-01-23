@@ -1,6 +1,5 @@
 import { SettingsIcon } from "@chakra-ui/icons";
 import {
-  Box,
   Button,
   FormControl,
   FormErrorMessage,
@@ -19,12 +18,12 @@ import {
   useToast,
   VStack,
 } from "@chakra-ui/react";
-import { FC } from "react";
-import { IRoom } from "interfaces/IRoom";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { REQUIRED_NUMBER_OF_PLAYERS } from "utils/initialRoom";
 import { ref, runTransaction } from "firebase/database";
+import { IRoom } from "interfaces/IRoom";
+import { FC } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { db } from "src/services/firebase";
+import { REQUIRED_NUMBER_OF_PLAYERS } from "utils/initialRoom";
 
 type RoomSettingsFormProps = Pick<
   IRoom,

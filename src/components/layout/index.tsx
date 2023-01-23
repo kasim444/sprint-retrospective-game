@@ -1,4 +1,4 @@
-import { Box } from "@chakra-ui/react";
+import { Center } from "@chakra-ui/react";
 import { Adsense } from "@ctrl/react-adsense";
 import Spinner from "components/Spinner";
 import { useAuth } from "hooks/useAuth";
@@ -21,12 +21,12 @@ const Layout = () => {
       <main>
         <Outlet />
       </main>
-      <Box my="4">
+      <Center my="4">
         <Adsense
           client={import.meta.env.VITE_APP_ADSENSE_CLIENT_ID}
           slot={import.meta.env.VITE_APP_ADSENSE_SLOT_FOOTER_ID}
         />
-      </Box>
+      </Center>
       <Footer />
       <Spinner isOpen={isFetchingUser} />
     </>

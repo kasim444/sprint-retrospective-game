@@ -22,8 +22,9 @@ import Brand from "components/Brand";
 import NavLinks from "components/NavLinks";
 import { signOut } from "firebase/auth";
 import { useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { auth } from "services/firebase";
+import ShareRoomLink from "src/components/ShareRoomLink";
 import { selectUser } from "store/features/user/userSlice";
 
 const Header = () => {
@@ -31,6 +32,7 @@ const Header = () => {
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { colorMode, toggleColorMode } = useColorMode();
+  const { roomId } = useParams();
 
   const user = useSelector(selectUser);
 
@@ -50,7 +52,7 @@ const Header = () => {
   return (
     <header>
       <Container maxWidth={"container.lg"}>
-        <Box px={4}>
+        <Box px={{ base: 0, lg: 4 }}>
           <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
             <IconButton
               size={"md"}
@@ -69,8 +71,9 @@ const Header = () => {
                 <NavLinks />
               </HStack>
             </HStack>
-            <Flex alignItems={"center"} gap="4">
-              <Button onClick={toggleColorMode}>
+            <Flex alignItems={"center"} gap={{ base: "1", lg: "4" }}>
+              {roomId && <ShareRoomLink roomId={roomId} />}
+              <Button rounded={"full"} onClick={toggleColorMode}>
                 {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
               </Button>
               {user?.displayName && (

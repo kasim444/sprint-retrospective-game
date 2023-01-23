@@ -1,4 +1,3 @@
-import { LinkIcon } from "@chakra-ui/icons";
 import {
   Button,
   Container,
@@ -6,18 +5,16 @@ import {
   Link as ChakraLink,
   Stack,
   Text,
-  useClipboard,
 } from "@chakra-ui/react";
 import { FC } from "react";
 import { Link } from "react-router-dom";
+import ShareRoomLink from "src/components/ShareRoomLink";
 
 interface IJoinRoom {
   roomId: string;
 }
 
 const JoinRoom: FC<IJoinRoom> = ({ roomId }) => {
-  const { onCopy, hasCopied } = useClipboard(`/room/${roomId}`);
-
   return (
     <Container maxW={"5xl"}>
       <Stack textAlign={"center"} align={"center"} spacing="4" py="20">
@@ -47,7 +44,6 @@ const JoinRoom: FC<IJoinRoom> = ({ roomId }) => {
           >
             <Button
               rounded={"full"}
-              size={"lg"}
               fontWeight={"normal"}
               px={6}
               colorScheme={"green"}
@@ -57,16 +53,7 @@ const JoinRoom: FC<IJoinRoom> = ({ roomId }) => {
               Join Room
             </Button>
           </ChakraLink>
-          <Button
-            rounded={"full"}
-            size={"lg"}
-            fontWeight={"normal"}
-            px={6}
-            onClick={onCopy}
-            leftIcon={<LinkIcon />}
-          >
-            {hasCopied ? "Copied!" : "Share Room"}
-          </Button>
+          {roomId && <ShareRoomLink roomId={roomId} />}
         </Stack>
       </Stack>
     </Container>

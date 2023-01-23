@@ -1,4 +1,4 @@
-import { CloseIcon, HamburgerIcon } from "@chakra-ui/icons";
+import { CloseIcon, HamburgerIcon, MoonIcon, SunIcon } from "@chakra-ui/icons";
 import {
   Avatar,
   Box,
@@ -14,6 +14,7 @@ import {
   MenuItem,
   MenuList,
   Stack,
+  useColorMode,
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
@@ -29,6 +30,7 @@ const Header = () => {
   const toast = useToast();
   const navigate = useNavigate();
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const { colorMode, toggleColorMode } = useColorMode();
 
   const user = useSelector(selectUser);
 
@@ -67,7 +69,10 @@ const Header = () => {
                 <NavLinks />
               </HStack>
             </HStack>
-            <Flex alignItems={"center"}>
+            <Flex alignItems={"center"} gap="4">
+              <Button onClick={toggleColorMode}>
+                {colorMode === "light" ? <MoonIcon /> : <SunIcon />}
+              </Button>
               {user?.displayName && (
                 <>
                   <Menu placement="bottom">

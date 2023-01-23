@@ -11,6 +11,8 @@
 - cards ( /cardId )
 - retroStatus
 - activeCardId
+- requiredNumberOfPlayers
+- roomName
 
 ## cards ( / cardId )
 

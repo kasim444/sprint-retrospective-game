@@ -52,7 +52,7 @@ const Header = () => {
   return (
     <header>
       <Container maxWidth={"container.lg"}>
-        <Box px={{ base: 0, lg: 4 }}>
+        <Box>
           <Flex h={16} alignItems={"center"} justifyContent={"space-between"}>
             <IconButton
               size={"md"}

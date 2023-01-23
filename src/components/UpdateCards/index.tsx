@@ -26,8 +26,8 @@ import {
 import { ref } from "firebase/database";
 import { useObject } from "react-firebase-hooks/database";
 import { useParams } from "react-router-dom";
-import { REQUIRED_NUMBER_OF_PLAYERS } from "src/pages/Room/Room";
 import { db } from "src/services/firebase";
+import { REQUIRED_NUMBER_OF_PLAYERS } from "src/utils/initialRoom";
 import CreateRetroQuestionForm from "./CreateRetroQuestionForm";
 import DeleteRetroQuestionModal from "./DeleteRetroQuestionModal";
 import UpdateRetroQuestionForm from "./UpdateRetroQuestionForm";
@@ -57,11 +57,6 @@ const UpdateCards = () => {
             {cards?.val() && (
               <TableContainer mt="4">
                 <Table>
-                  <TableCaption>
-                    In order for the retro meeting to start, you must create a
-                    minimum of {REQUIRED_NUMBER_OF_PLAYERS} questions.
-                  </TableCaption>
-
                   <Thead>
                     <Tr>
                       <Th />

@@ -20,4 +20,6 @@ export interface IRoom {
   players?: IPlayersOfRoom;
   activeCardId?: string;
   retroStatus: IRetroStatus;
+  roomName: string;
+  requiredNumberOfPlayers: number;
 }

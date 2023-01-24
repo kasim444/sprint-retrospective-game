@@ -20,11 +20,11 @@ import {
 } from "@chakra-ui/react";
 import Brand from "components/Brand";
 import NavLinks from "components/NavLinks";
+import ShareRoomLink from "components/ShareRoomLink";
 import { signOut } from "firebase/auth";
 import { useSelector } from "react-redux";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { auth } from "services/firebase";
-import ShareRoomLink from "src/components/ShareRoomLink";
 import { selectUser } from "store/features/user/userSlice";
 
 const Header = () => {

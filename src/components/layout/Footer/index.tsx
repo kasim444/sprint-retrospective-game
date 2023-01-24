@@ -7,6 +7,7 @@ import {
 } from "@chakra-ui/react";
 import Brand from "components/Brand";
 import NavLinks from "components/NavLinks";
+import GitHubRepoLink from "src/components/GitHubRepoLink";
 import packageJson from "../../../../package.json";
 
 const Footer = () => {
@@ -27,13 +28,14 @@ const Footer = () => {
         >
           <Stack direction={"row"} alignItems="center" spacing={6}>
             <Brand />
+            <GitHubRepoLink />
             <NavLinks />
           </Stack>
           <Stack direction={"row"} alignItems="center" spacing={6}>
             <Text color="gray.500" fontSize={"xs"}>
               <Text as="span">Version: </Text> {packageJson.version}
             </Text>
-            <Text>© 2022 Retro. All rights reserved</Text>
+            <Text>© {new Date().getFullYear()} Retro. All rights reserved</Text>
           </Stack>
         </Container>
       </Box>

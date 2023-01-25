@@ -1,7 +1,7 @@
 import EnterRoom from "components/sections/EnterRoom";
 import { useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
-import { selectUser } from "src/store/features/user/userSlice";
+import { selectUser } from "store/features/user/userSlice";
 
 const PrivateRoute = () => {
   const user = useSelector(selectUser);

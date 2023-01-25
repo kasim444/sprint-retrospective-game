@@ -12,10 +12,10 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { ref, remove } from "firebase/database";
+import { IRetroCard } from "interfaces/IRetroCard";
 import React, { FC } from "react";
 import { useParams } from "react-router-dom";
-import { IRetroCard } from "src/interfaces/IRetroCard";
-import { db } from "src/services/firebase";
+import { db } from "services/firebase";
 
 type IDeleteRetroQuestionModal = Pick<IRetroCard, "cardId">;
 

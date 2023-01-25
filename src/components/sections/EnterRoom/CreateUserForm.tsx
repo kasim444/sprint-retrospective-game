@@ -10,12 +10,12 @@ import {
 } from "@chakra-ui/react";
 import { signInAnonymously } from "firebase/auth";
 import { ref, set } from "firebase/database";
+import { IUser } from "interfaces/IUser";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { IUser } from "src/interfaces/IUser";
-import { auth, db } from "src/services/firebase";
-import { selectUser, updateUser } from "src/store/features/user/userSlice";
+import { auth, db } from "services/firebase";
+import { selectUser, updateUser } from "store/features/user/userSlice";
 
 const CreateUserForm = () => {
   const [displayName, setDisplayName] = useState("");

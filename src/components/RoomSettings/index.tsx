@@ -22,7 +22,7 @@ import { ref, runTransaction } from "firebase/database";
 import { IRoom } from "interfaces/IRoom";
 import { FC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { db } from "src/services/firebase";
+import { db } from "services/firebase";
 import { REQUIRED_NUMBER_OF_PLAYERS } from "utils/initialRoom";
 
 type RoomSettingsFormProps = Pick<

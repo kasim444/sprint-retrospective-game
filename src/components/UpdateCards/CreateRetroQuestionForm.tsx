@@ -10,12 +10,12 @@ import {
   useDisclosure,
 } from "@chakra-ui/react";
 import { ref, set } from "firebase/database";
+import { CARD_COLORS, IRetroCard } from "interfaces/IRetroCard";
 import { useEffect } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
-import { CARD_COLORS, IRetroCard } from "src/interfaces/IRetroCard";
-import { db } from "src/services/firebase";
-import { generateRoomId } from "src/utils/generateRoomId";
+import { db } from "services/firebase";
+import { generateRoomId } from "utils/generateRoomId";
 
 const CreateRetroQuestionForm = () => {
   const { isOpen, onToggle } = useDisclosure();

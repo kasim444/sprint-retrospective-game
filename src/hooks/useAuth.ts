@@ -18,7 +18,7 @@ export const useAuth = () => {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setTimeout(() => {
         dispatch(setIsFetchingUser(false));
-      }, 1000);
+      }, 500);
 
       if (user) {
         onValue(ref(db, `/users/` + user.uid), (snapshot) => {

@@ -16,12 +16,12 @@ import {
   useDisclosure,
   useToast,
 } from "@chakra-ui/react";
-import React, { FC } from "react";
+import { ref, runTransaction } from "firebase/database";
 import { CARD_COLORS, IRetroCard } from "interfaces/IRetroCard";
+import React, { FC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
-import { db } from "src/services/firebase";
-import { ref, runTransaction } from "firebase/database";
+import { db } from "services/firebase";
 
 const UpdateRetroQuestionForm: FC<IRetroCard> = ({
   cardId,

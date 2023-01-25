@@ -6,8 +6,8 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react";
 import Brand from "components/Brand";
+import GitHubRepoLink from "components/GitHubRepoLink";
 import NavLinks from "components/NavLinks";
-import GitHubRepoLink from "src/components/GitHubRepoLink";
 import packageJson from "../../../../package.json";
 
 const Footer = () => {

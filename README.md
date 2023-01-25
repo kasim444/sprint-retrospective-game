@@ -2,6 +2,8 @@
 
 This retrospective sprint game will help you make your retro meetings more productive and colourful.
 
+https://user-images.githubusercontent.com/31325122/214688770-23e05337-1798-45bf-8fef-0ed6b15b25a2.mp4
+
 ## About Sprint Retrospective Game
 
 ### What is a Sprint Retrospective?

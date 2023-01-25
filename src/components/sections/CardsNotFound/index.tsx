@@ -13,10 +13,10 @@ const CardsNotFound = () => {
     >
       <Image src="/images/not-found.png" alt="Not found" maxWidth={"300px"} />
       <AlertTitle mt={4} mb={1} fontSize="lg">
-        Not Found
+        No cards were found
       </AlertTitle>
       <AlertDescription maxWidth="sm" mb="4">
-        Sorry, we couldn't find any cards for you.
+        The cards are expected to be prepared.
       </AlertDescription>
     </Alert>
   );

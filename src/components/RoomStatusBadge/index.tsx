@@ -1,6 +1,6 @@
 import { Badge } from "@chakra-ui/react";
+import { IRetroStatus } from "interfaces/IRoom";
 import { FC } from "react";
-import { IRetroStatus } from "src/interfaces/IRoom";
 
 interface IRoomStatusBadge {
   status: IRetroStatus;

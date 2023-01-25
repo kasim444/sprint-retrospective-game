@@ -1,10 +1,7 @@
-import { CloseIcon } from "@chakra-ui/icons";
 import {
   Box,
   Button,
-  Divider,
   Flex,
-  IconButton,
   Modal,
   ModalBody,
   ModalCloseButton,
@@ -13,7 +10,6 @@ import {
   ModalHeader,
   ModalOverlay,
   Table,
-  TableCaption,
   TableContainer,
   Tbody,
   Td,
@@ -26,8 +22,7 @@ import {
 import { ref } from "firebase/database";
 import { useObject } from "react-firebase-hooks/database";
 import { useParams } from "react-router-dom";
-import { db } from "src/services/firebase";
-import { REQUIRED_NUMBER_OF_PLAYERS } from "src/utils/initialRoom";
+import { db } from "services/firebase";
 import CreateRetroQuestionForm from "./CreateRetroQuestionForm";
 import DeleteRetroQuestionModal from "./DeleteRetroQuestionModal";
 import UpdateRetroQuestionForm from "./UpdateRetroQuestionForm";

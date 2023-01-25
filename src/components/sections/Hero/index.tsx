@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { selectUser } from "src/store/features/user/userSlice";
+import { selectUser } from "store/features/user/userSlice";
 import CreateRoom from "../CreateRoom";
 import JoinRoom from "../JoinRoom";
 

@@ -13,10 +13,7 @@ interface ISpinner {
 const Spinner: FC<ISpinner> = ({ isOpen }) => {
   return (
     <Modal isCentered isOpen={isOpen} onClose={() => {}}>
-      <ModalOverlay
-        bg="blackAlpha.300"
-        backdropFilter="blur(10px) hue-rotate(90deg)"
-      />
+      <ModalOverlay bg="blackAlpha.400" backdropFilter="blur(20px)" />
       <ModalContent
         background="transparent"
         boxShadow={"none"}

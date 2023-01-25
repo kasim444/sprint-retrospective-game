@@ -370,6 +370,7 @@ const Room = () => {
               ))}
           </Box>
         </Flex>
+
         <Flex
           as={motion.div}
           initial={false}

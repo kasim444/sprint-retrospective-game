@@ -152,25 +152,22 @@ const RetroCard: FC<IRetroCard> = ({
           }}
         >
           {cardOwnerDisplayName && (
-            <Tooltip hasArrow label={cardOwnerDisplayName}>
-              <Avatar
-                name={cardOwnerDisplayName}
-                size="sm"
-                userSelect={"none"}
-                bgGradient={`linear(to-r, ${color}.300, ${color}.600)`}
-                position="absolute"
-                bottom="6"
-                left="50%"
-                transform="translateX(-50%)"
-                cursor={"pointer"}
-                {...(isActive && { zIndex: 3 })}
-                sx={{
-                  "& > div": {
-                    width: "full",
-                  },
-                }}
-              />
-            </Tooltip>
+            <Text
+              as="span"
+              position="absolute"
+              bottom="6"
+              left="50%"
+              transform="translateX(-50%)"
+              bgGradient={`linear(to-r, ${color}.300, ${color}.600)`}
+              bgClip="text"
+              maxWidth={"full"}
+              px="4"
+              textOverflow={"ellipsis"}
+              overflow={"hidden"}
+              whiteSpace={"nowrap"}
+            >
+              {cardOwnerDisplayName}
+            </Text>
           )}
           <Text textAlign={"center"}>{question}</Text>
         </Box>
